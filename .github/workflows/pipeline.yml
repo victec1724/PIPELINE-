@@ -1,0 +1,19 @@
+name: CI-CD Pipeline
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+      - name: Listar archivos
+        run: ls -l
+      - name: Dar permisos al script
+        run: chmod +x app.sh
+      - name: Ejecutar script
+        run: ./app.sh
+      - name: Construir imagen Docker
+        run: docker build -t devops-app .
+      - name: Listar imagenes Docker
+        run: docker images
